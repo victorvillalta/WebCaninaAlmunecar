@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavado Canino - Tu Mejor Opción</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="media/img/iconos/UIUX_Generica/Icono09_huella02FavIcon.svg" type="image/svg">
+    </head>
+<body>
+
+    <header class="header">
+        <div class="header__top">
+            <div class="header__logo">
+                <img src="media/img/logotipos/LogotiposLavado.png" alt="Logotipo Lavado Canino">
+            </div>
+            <h1 class="header__title">Lavado Canino</h1>
+        </div>
+
+        <button class="header__nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
+            <img src="media/img/iconos/UIUX_Generica/Icono17_hamb_bones.svg" alt="Abrir menú" class="header__nav-toggle-icon header__nav-toggle-icon--hamburger">
+            <img src="media/img/iconos/UIUX_Generica/Icono19_cruz2_bones.svg" alt="Cerrar menú" class="header__nav-toggle-icon header__nav-toggle-icon--close is-hidden">
+        </button>
+        <nav class="header__nav" id="main-nav">
+             <ul class="header__nav-list" id="main-nav-list"> <!--/*Añadido ID para JS si es necesario*/ -->
+                <li class="header__nav-item">
+                    <a href="index.html" class="header__nav-link">
+                        <img src="media/img/iconos/menu/Icono01_inicio.svg" alt="" class="header__nav-icon"> <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#nosotros" class="header__nav-link">
+                        <img src="media/img/iconos/menu/Icono02_nosotros.svg" alt="" class="header__nav-icon"> <span>Sobre Nosotros</span>
+                    </a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#servicios" class="header__nav-link">
+                        <img src="media/img/iconos/menu/Icono03_servicios.svg" alt="" class="header__nav-icon"> <span>Servicios</span>
+                    </a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="#galeria" class="header__nav-link">
+                        <img src="media/img/iconos/menu/Icono04_galeria.svg" alt="" class="header__nav-icon"> <span>Galería</span>
+                    </a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="html/contacto.html" class="header__nav-link">
+                        <img src="media/img/iconos/menu/Icono05_contactanos.svg" alt="" class="header__nav-icon"> <span>Contacto</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="carousel-main">
+            <div class="carousel-main__container">
+                <div class="carousel-main__slides">
+                    <div class="carousel-main__slide">
+                        <img src="media/img/banner/BANNERSWEB_Mesa de trabajo 1.png" alt="Descripción imagen 1">
+                    </div>
+                    <div class="carousel-main__slide">
+                        <img src="media/img/banner/BANNERSWEB-02.png" alt="Descripción imagen 2">
+                    </div>
+                    <div class="carousel-main__slide">
+                        <img src="media/img/banner/BANNERSWEB-03.png" alt="Descripción imagen 3">
+                    </div>
+                </div>
+                <button class="carousel-main__btn carousel-main__btn--prev" aria-label="Anterior">&lt;</button>
+                <button class="carousel-main__btn carousel-main__btn--next" aria-label="Siguiente">&gt;</button>
+            </div>
+        </section>
+
+        <section id="servicios" class="services">
+            <h2 class="section-title">Nuestros Servicios y Ofertas</h2>
+            <hr class="separator">
+            <div class="services__carousel">
+                <div class="services__carousel-window">
+                    <div class="services__carousel-track">
+                        <article class="service-card">
+                            <div class="service-card__image">
+                                <img src="media/img/piscinaLabrador.jpg" alt="Servicio 1">
+                            </div>
+                            <div class="service-card__info">
+                                <h3>Lavado Básico</h3>
+                                <p>Descripción breve del servicio.</p>
+                            </div>
+                        </article>
+                        <article class="service-card">
+                            <div class="service-card__image">
+                                <img src="media/img/peluqueriaCanina/perronecesitadodepelado02.jpg" alt="Servicio 2">
+                            </div>
+                            <div class="service-card__info">
+                                <h3>Corte de Pelo</h3>
+                                <p>Descripción breve del servicio.</p>
+                            </div>
+                        </article>
+                        <article class="service-card">
+                            <div class="service-card__image">
+                                <img src="media/img/antiparasitos.jpg" alt="Servicio 3">
+                            </div>
+                            <div class="service-card__info">
+                                <h3>Tratamiento Antiparasitario</h3>
+                                <p>Descripción breve del servicio.</p>
+                            </div>
+                        </article>
+                        <article class="service-card">
+                            <div class="service-card__image">
+                                <img src="media/img/perroSecado.jpg" alt="Servicio 4">
+                            </div>
+                            <div class="service-card__info">
+                                <h3>Secado Automatico</h3>
+                                <p>Tu perro se ira completamente seco</p>
+                            </div>
+                        </article>
+                         <article class="service-card">
+                            <div class="service-card__image">
+                                <img src="media/img/antiparasitos.jpg" alt="Servicio 5">
+                            </div>
+                            <div class="service-card__info">
+                                <h3>Guardería Canina</h3>
+                                <p>Quitale todos los parasitos que tu mascota pueda tener</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <button class="services__carousel-btn services__carousel-btn--prev" aria-label="Anterior">&lt;</button>
+                <button class="services__carousel-btn services__carousel-btn--next" aria-label="Siguiente">&gt;</button>
+            </div>
+            <hr class="separator">
+        </section>
+
+        <section id="productos" class="products">
+             <h2 class="section-title">Productos Destacados</h2>
+            <div class="products__grid">
+                <div class="product-item">
+                    <div class="product-item__image-container">
+                        <img src="placeholder-product1.jpg" alt="Producto 1">
+                        <button class="product-item__info-icon" aria-label="Más info">i</button>
+                        <div class="product-item__info-popup">Esto producto es un gran producto inovador y esta muy barato</div>
+                    </div>
+                    <div class="product-item__description">
+                        <h4>Bolsas biodegradables para excrementos</h4>
+                        <p>Una opción ecológica y práctica para recoger sus necesidades durante los paseos.</p>
+                    </div>
+                </div>
+                 <div class="product-item">
+                    <div class="product-item__image-container">
+                        <img src="placeholder-product2.jpg" alt="Producto 2">
+                        <button class="product-item__info-icon" aria-label="Más info">i</button>
+                        <div class="product-item__info-popup">Esto producto es un gran producto inovador y esta muy barato</div>
+                    </div>
+                    <div class="product-item__description">
+                        <h4>Champú suave natural</h4>
+                        <p> Limpieza delicada que respeta su piel y pelaje, dejándolo suave, brillante y con un aroma fresco.</p>
+                    </div>
+                </div>
+                 <div class="product-item">
+                    <div class="product-item__image-container">
+                        <img src="placeholder-product3.jpg" alt="Producto 3">
+                         <button class="product-item__info-icon" aria-label="Más info">i</button>
+                         <div class="product-item__info-popup">Esto producto es un gran producto inovador y esta muy barato</div>
+                    </div>
+                    <div class="product-item__description">
+                        <h4>Comedero interactivo</h4>
+                        <p> Estimula mentalmente a tu perro y ralentiza su ingesta, previniendo la hinchazón y mejorando la digestión.</p>
+                    </div>
+                </div>
+                 <div class="product-item">
+                    <div class="product-item__image-container">
+                        <img src="placeholder-product4.jpg" alt="Producto 4">
+                         <button class="product-item__info-icon" aria-label="Más info">i</button>
+                         <div class="product-item__info-popup">Esto producto es un gran producto inovador y esta muy barato</div>
+                    </div>
+                    <div class="product-item__description">
+                        <h4>Cama ortopédica</h4>
+                        <p> Máximo confort y soporte para un descanso reparador, especialmente beneficioso para perros mayores o con problemas articulares.</p>
+                    </div>
+                </div>
+                 <div class="product-item">
+                    <div class="product-item__image-container">
+                        <img src="placeholder-product5.jpg" alt="Producto 5">
+                         <button class="product-item__info-icon" aria-label="Más info">i</button>
+                         <div class="product-item__info-popup">Esto producto es un gran producto inovador y esta muy barato</div>
+                    </div>
+                    <div class="product-item__description">
+                        <h4>Mordedor resistente</h4>
+                        <p> Diversión duradera y segura para horas de juego, ideal para mantener sus mandíbulas fuertes y sanas.</p>
+                    </div>
+                </div>
+                 <div class="product-item is-hidden">
+                    <div class="product-item__image-container">
+                        <img src="placeholder-product6.jpg" alt="Producto 6">
+                         <button class="product-item__info-icon" aria-label="Más info">i</button>
+                         <div class="product-item__info-popup">Esto producto es un gran producto inovador y esta muy barato</div>
+                    </div>
+                    <div class="product-item__description">
+                        <h4>Arnés ergonómico</h4>
+                        <p>Paseos cómodos y seguros, diseñado para distribuir la presión y evitar tirones en el cuello.</p>
+                    </div>
+                </div>
+                 </div>
+            <button class="products__load-more">Mostrar Más Productos</button>
+        </section>
+
+        <!-- <section id="contacto" class="location">
+             <h2 class="section-title">Encuéntranos</h2>
+            <div id="map" class="location__map">
+                <p>Cargando mapa...</p>
+            </div>
+
+            lo del mapa no he tenio time
+        </section> -->
+
+        <section class="hours">
+             <h2 class="section-title">Nuestro Horario</h2>
+            <div class="hours__toggle">
+                <!-- toggle es lo que usaremos en JS para ponner y quitar invierno o verano pues denomina nuestra etiqueta, se me ocurren varias maneras...-->
+                <button class="hours__toggle-btn hours__toggle-btn--summer is-active" data-schedule="summer"><img src="" alt="solete">Horario Verano</button>
+                <button class="hours__toggle-btn hours__toggle-btn--winter" data-schedule="winter"><img src="" alt="">Horario Invierno</button>
+            </div>
+            <div class="hours__display">
+                <div class="hours__schedule hours__schedule--summer is-visible" id="schedule-summer">
+                    <div class="hour-card"><strong>Lunes a Viernes:</strong> 9:00 - 19:00</div>
+                    <div class="hour-card"><strong>Sábados:</strong> 10:00 - 14:00</div>
+                    <div class="hour-card"><strong>Domingos:</strong> Cerrado</div>
+                </div>
+                <div class="hours__schedule hours__schedule--winter" id="schedule-winter">
+                    <div class="hour-card"><strong>Lunes a Viernes:</strong> 9:00 - 18:00</div>
+                    <div class="hour-card"><strong>Sábados:</strong> 10:00 - 13:00</div>
+                    <div class="hour-card"><strong>Domingos y Festivos:</strong> Cerrado</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__links">
+                <h4 class="footer__title">Enlaces útiles</h4>
+                <ul class="footer__list">
+                    <li><a href="#politica-privacidad" class="footer__link">Política de Privacidad</a></li>
+                    <li><a href="#terminos-condiciones" class="footer__link">Términos y Condiciones</a></li>
+                    <li><a href="#faq" class="footer__link">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="footer__social">
+                 <h4 class="footer__title">Síguenos</h4>
+                <ul class="footer__list footer__list--social">
+                    <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Facebook"><img src="media/svg/ICONfacebook.svg" alt="Facebook"></a></li>
+                    <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Instagram"><img src="media/svg/ICONInstagram_light.svg" alt="Instagram"></a></li>
+                    <li><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="TikTok"><img src="media/svg/ICONtiktok.svg" alt="TikTok"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__copy">
+            &copy; 2025 Lavado Canino. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    </body>
+</html>

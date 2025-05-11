@@ -1,0 +1,619 @@
+:root {
+    /* 🎨 Colores web*/
+    --color-primary: #92C0E5;
+    --color-primaryDark: #1a73e8;
+    --color-secondary: #F9B333;
+    --color-secondaryDark: #F29206;
+    --color-accent: #59c075; /* este color para lo aceptado */
+    --color-danger: #c02a1c; /* errores */
+    --color-waitingObjet: #b9afd3;
+
+    /* 🖼️ Colores de fondo */
+    --bg-full_light: #ffffff;
+    --bg-lightSmoth: #E4DFF1;
+    --bg-full_dark: #000000;
+    --bg-darkSmoth: #111111; /* tambien se suelen usar 100, 200 , 300 segun lo oscuro. */
+    --bg-button: var(--color-primary); /* podemos reusar colores pero... determinarlos aqui para claridad en nomenclaturas es una buena practica */
+    --bg-button-hover: var(--color-primaryDark);
+    --bg-card: var(--bg-full_light);
+    --bg-footer: var(--bg-darkSmoth);
+    
+
+    /* 📝 Colores de texto */
+    --text-primary: #202124;
+    --text-secondary: #535960;
+    --text-inverse: #ffffff;
+    --text-link: var(--color-primaryDark);
+
+    /* 🔤 Tipografía */
+    --font-base: 'Inter', 'Segoe UI', sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 20px;
+    --line-height-base: 1.6;
+
+    /* 📦 Espaciado */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* 🎯 Bordes y radios */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    --border-color: #dadce0;
+    --border-separator: 1px solid var(--border-color);
+
+    /* 💨 Sombras */
+    --shadow-sm: 0 1px 2px 0px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px 0px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px 0px rgba(0, 0, 0, 0.15);
+
+    /* Sombras tipo "Neumorfismo" para el formulario */
+    --neumorphism-bg-color1: #f0f0f0; /* Color claro del gradiente */
+    --neumorphism-bg-color2: #cacaca; /* Color oscuro del gradiente */
+    --neumorphism-shadow-color1: #b5b5b5; /* Sombra oscura */
+    --neumorphism-shadow-color2: #ffffff; /* Sombra clara (brillo) */
+    --neumorphism-form-border-radius: 33px;
+
+    /* 🕓 Transiciones */
+    --transition-default: all 0.3s ease-in-out;
+}
+
+/*RESET*/
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+}
+
+body{
+    /*cuando se genera un root es mas comodo definir despues valores por defecto a partes importantes como el body creando
+    una instancia reforzada por nuestros estilos definidos igual que un FRAME WORK*/
+    font-family: var(--font-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+    background-color: var(--bg-lightSmoth);
+    /*propiedades determinadas de propiedades que son específicas del motor de renderizado*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex; /*de momento para que me las tire para abajo todas*/
+    flex-direction: column;
+    min-height: 100vh; /*toma el alto del display, evitamos que se salga algun contenido y se ve todo sin problemas*/ 
+}
+
+main {
+    flex-grow: 1; /*empuja el footer hacia abajo*/
+}
+
+input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /*evita espacio extra debajo de las img*/
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-link);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    color: var(--color-primaryDark);
+}
+
+.separator {
+    border: none;
+    border-top: var(--border-separator);
+    margin: var(--spacing-lg) auto; 
+    width: 80%; 
+}
+
+/*HEADER*/
+.header {
+    background-color: var(--bg-full_light);
+    padding: var(--spacing-sm) 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.header__top {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 0 var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap; /*solucion moviles... de momento*/
+}
+
+.header__logo img {
+    width: 100px; 
+    height: auto;
+}
+
+.header__title {
+    font-size: 1.8rem; 
+    color: var(--color-primaryDark);
+    margin-left: var(--spacing-md); 
+}
+
+/*estilos para la hamburguesa, algunos son tomados en el DOM como la mayoria.. (por tanto la importancia de las clases toma peso)*/
+.header__nav-toggle {
+    display: none; /* Oculto por defecto, se mostrará en móviles */
+    background: var(--color-waitingObjet);
+    border-radius: 50%;
+    border: none;
+    padding: var(--spacing-sm); /* Un poco de padding para facilitar el click */
+    cursor: pointer;
+    position:fixed; /*Para posicionarlo en la esquina del header*/
+    top: 20px; /* Ajusta este valor para alinearlo verticalmente con tu header__top */
+    right: var(--spacing-md); /* Espacio desde la derecha */
+    z-index: 1100; /* Muy alto para estar encima de todo, incluso del menú desplegado */
+    width: 60px;  /* Ajusta al tamaño deseado de tus iconos */
+    height: 60px; /* Ajusta al tamaño deseado de tus iconos */
+    border: #5122c9 solid 3px;
+}
+
+.header__nav-toggle-icon {
+    width: 100%; /* La imagen SVG ocupa todo el botón */
+    height: 100%;
+    object-fit: contain; /* Para que el SVG escale sin deformarse */
+    display: block; /* Para evitar espacios extra */
+}
+
+.header__nav-toggle-icon.is-hidden {
+    display: none; /* Oculta el icono que no está activo */
+}
+
+.header__nav {
+    background-color: var(--color-waitingObjet); /*este es el color del nav por si se quiere cambiar por colision con iconos */
+    padding: var(--spacing-sm) 0;
+    position:sticky; /*fixed seria para que nos siguiese y el sticky para que nos siguiese despues de bajar el scroll.. cual es el problema, de porque no baja..*/
+    top: 0;
+    z-index: 1000; /*esto es una mala praxis pero como tiene que estar por encima de todo y puede haber varios puntos de capas pues... */
+    width: 100%;
+    box-shadow: var(--shadow-md);
+}
+
+.header__nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap; /*para que se apinen que despues... problemas*/
+}
+
+.header__nav-item {
+    /*lo estoy usando con el DOM aunque este vacio*/
+}
+
+.header__nav-link {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    color: var(--text-inverse);
+    font-weight: bold;
+    transition: var(--transition-default);
+    background-color: transparent; 
+}
+
+.header__nav-link:hover,
+.header__nav-link:focus {
+    background-color: var(--bg-secondary-b30); 
+    color: var(--text-primary); 
+    box-shadow: var(--shadow-sm);
+}
+
+.header__nav-icon {
+    width: 48px; 
+    height: 48px;
+    margin-right: var(--spacing-xs);
+    filter: brightness(0) invert(1); 
+/*los filtros son muy utiles para cambiar una cosa sin necesidad de cambiarla en el diseno, no me gusta como lo he dejado pero esta apanado por el momento*/
+}
+
+.header__nav-link:hover .header__nav-icon,
+.header__nav-link:focus .header__nav-icon {
+     filter: none; 
+}
+
+
+
+.form-container {
+    width: 100%;
+    max-width: 650px; /* Ancho máximo del formulario */
+    margin-top: var(--spacing-lg); /* Margen superior */
+    margin-bottom: var(--spacing-lg); /* Margen inferior para scroll */
+    padding: var(--spacing-xl); /* Espacio interno del contenedor de la sombra */
+    border-radius: var(--neumorphism-form-border-radius);
+    background: linear-gradient(145deg, var(--neumorphism-bg-color1), var(--neumorphism-bg-color2));
+    box-shadow:  20px 20px 26px var(--neumorphism-shadow-color1),
+                 -20px -20px 26px var(--neumorphism-shadow-color2);
+}
+
+.form {
+    background-color: transparent; /* El fondo lo da el form-container */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md); /* Espacio entre grupos de formulario */
+}
+
+.form__title {
+    font-size: calc(var(--font-size-lg) * 1.2);
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs); /* Espacio entre label e input */
+}
+
+.form__fieldset {
+    border: none; /* Quitar borde por defecto del fieldset */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form__legend {
+    font-weight: bold;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    padding: 0; /* Ajustar si es necesario */
+    margin-bottom: var(--spacing-sm); /* Espacio debajo de la leyenda */
+}
+
+
+.form__label {
+    font-weight: bold;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.form__input,
+.form__select {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md); /* Radio más pronunciado para los inputs */
+    font-size: var(--font-size-base);
+    transition: var(--transition-default);
+    background-color: var(--bg-full_light);
+    box-shadow: var(--shadow-sm); /* Sombra sutil para los inputs */
+}
+
+.form__input:focus,
+.form__select:focus {
+    outline: none;
+    border-color: var(--color-primaryDark);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2), var(--shadow-md); /* Usando el color primaryDark para el foco */
+}
+
+/* Estilos para inputs inválidos */
+.form__input--invalid,
+.form__select--invalid {
+    border-color: var(--color-danger) !important; /* Prioridad alta */
+    background-color: #fff2f1; /* Fondo rojo muy claro */
+}
+.form__input--invalid:focus,
+.form__select--invalid:focus {
+     box-shadow: 0 0 0 3px rgba(192, 42, 28, 0.2) !important; /* Sombra roja para foco inválido */
+}
+
+/* Estilos para inputs válidos */
+.form__input--valid,
+.form__select--valid {
+    border-color: var(--color-accent) !important;
+}
+.form__input--valid:focus,
+.form__select--valid:focus {
+    box-shadow: 0 0 0 3px rgba(89, 192, 117, 0.2) !important; /* Sombra verde para foco válido */
+}
+
+.form__error-message {
+    font-size: var(--font-size-sm);
+    color: var(--color-danger);
+    min-height: calc(var(--font-size-sm) * var(--line-height-base));
+    display: block;
+    margin-top: var(--spacing-xs);
+}
+
+/* Estilos para los radio buttons */
+.form__radio-group {
+    display: flex;
+    flex-wrap: wrap; /* Para que se ajusten en pantallas pequeñas */
+    gap: var(--spacing-md);
+    align-items: center;
+    margin-top: var(--spacing-xs);
+}
+
+.form__radio-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.form__radio-input {
+    margin: 0; /* Quitar margen por defecto */
+    accent-color: var(--color-primaryDark);
+    width: 1.2em; /* Tamaño del radio */
+    height: 1.2em; /* Tamaño del radio */
+    cursor: pointer;
+}
+.form__radio-input:focus {
+    outline: 2px solid var(--color-primaryDark);
+    outline-offset: 2px;
+}
+
+
+.form__radio-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none; /* Evitar selección de texto del label */
+}
+
+
+.form__button--submit {
+    background-color: var(--bg-button);
+    color: var(--text-inverse);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-default);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: var(--spacing-sm); /* Espacio extra antes del botón */
+    box-shadow: var(--shadow-md);
+}
+
+.form__button--submit:hover:not(:disabled) {
+    background-color: var(--bg-button-hover);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px); /* Efecto ligero al pasar el ratón */
+}
+
+.form__button--submit:active:not(:disabled) {
+    transform: translateY(0px);
+    box-shadow: var(--shadow-sm);
+}
+
+
+.form__button--submit:disabled {
+    background-color: var(--color-waitingObjet);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Select deshabilitado */
+.form__select:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    color: #999;
+    opacity: 0.7;
+}
+
+
+
+
+.footer {
+    background-color: var(--color-primary); /*aqui tendria que poner el var del footer pero... no me va en condi de momento... asi que recuerda cambiarlo*/
+    color: var(--text-inverse);
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+    margin-top: var(--spacing-xl); 
+}
+
+.footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    flex-wrap: wrap; 
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer__links,
+.footer__social {
+    flex-basis: 45%; /*se utiliza dentro de un contenedor flexible*/
+    min-width: 200px;
+}
+
+.footer__title {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-secondary); 
+    border-bottom: 1px solid var(--color-secondary);
+    padding-bottom: var(--spacing-xs);
+    display: inline-block; 
+}
+
+.footer__list {
+   
+}
+
+.footer__list li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer__link {
+    color: var(--text-inverse);
+    transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+    color: var(--color-secondary);
+}
+
+.footer__list--social {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.footer__social-link img {
+    width: 28px; 
+    height: 28px;
+    filter: grayscale(100%) brightness(200%); /* como el filtro que use arriba, este los pone blancos (aunque sean de otro color claro) o deberia xD */
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.footer__social-link:hover img {
+    filter: none; /*como el hover pone el none el filtro indicado antes se disipara todo esto es muy util para efectos rapidos y resultones*/
+    transform: scale(1.1);
+}
+
+.footer__copy {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid #444; 
+    margin: 0 var(--spacing-md); 
+}
+
+@media (max-width: 768px) {
+    .header__title {
+        font-size: 1.5rem;
+    }
+
+    /*mostrar el menu hamburguesa*/
+    .header__nav-toggle { /* relacionado con el js */
+        display: block;
+    }
+
+   
+    /* Comportamiento del NAV (el menú) en móviles */
+    .header__nav {
+        position: fixed; /* Fijo en la pantalla */
+        top: 0;
+        left: 0;
+        width: 80%; /* Ancho del menú desplegado (ajusta al gusto) */
+        max-width: 300px; /* Un máximo para que no sea demasiado ancho */
+        height: 100vh; /* Altura completa de la pantalla */
+        
+        background-color: var(--color-waitingObjet); /* El color que ya tenías para el nav */
+        /* Si quieres un efecto de superposición más claro: */
+        /* background-color: rgba(146, 192, 229, 0.95); */ /* Tu --color-primary con opacidad */
+        /* backdrop-filter: blur(5px); */ /* Efecto blur opcional si usas RGBA */
+
+        padding-top: calc(var(--spacing-xl) + var(--spacing-lg)); /* Espacio arriba para no solapar con el botón de cierre si estuviera dentro, o simplemente para estética */
+        
+        transform: translateX(-100%); /* Oculto fuera de la pantalla a la izquierda */
+        transition: transform 0.3s ease-in-out; /* Animación suave */
+        
+        z-index: 1050; /* Debajo del botón de toggle, pero encima del contenido */
+        
+        /* Anula el sticky que tenías para escritorio, ya que ahora es fixed */
+        box-shadow: var(--shadow-lg); /* Sombra más pronunciada para el panel */
+        overflow-y: auto; /* Permite scroll si el menú es muy largo */
+    }
+
+    .header__nav.is-active { /* Clase que se añade con JS */
+        transform: translateX(0); /* Muestra el menú */
+    }
+
+    /* Ajustes a la lista de navegación dentro del menú móvil */
+    .header__nav-list {
+        flex-direction: column; /* Los items se apilan verticalmente */
+        align-items: flex-start; /* Alineados a la izquierda */
+        gap: var(--spacing-sm); /* Espacio entre items */
+        padding: var(--spacing-md) var(--spacing-lg); /* Padding interno */
+        /* justify-content: flex-start; Ya no es necesario space-around o center */
+        width: 100%; /* Ocupa todo el ancho del nav desplegado */
+    }
+    
+    .header__nav-item {
+        width: 100%; /* Cada item ocupa el ancho */
+    }
+
+    .header__nav-link {
+        padding: var(--spacing-md); /* Más padding para mejor toque en móvil */
+        font-size: var(--font-size-base); /* Ligeramente más grande o igual */
+        width: 100%; /* Para que toda la fila sea clickeable */
+        /* Tus estilos de hover/focus y color de texto deberían seguir funcionando bien */
+    }
+
+    .header__nav-icon {
+        width: 32px; /* Puedes ajustar el tamaño de los iconos en el menú móvil */
+        height: 32px;
+        /* margin-right: var(--spacing-sm); Un poco más de espacio si es necesario */
+    }
+
+        .footer__container {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+    .footer__links,
+    .footer__social {
+        flex-basis: 100%; 
+    }
+     .footer__title {
+        display: block;
+        border-bottom: none;
+    }
+    .footer__list--social {
+        justify-content: center; 
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .header__top {
+        flex-direction: column; 
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    .header__title {
+        margin-left: 0; 
+    }
+
+    .header__nav-list {
+        flex-direction: column;
+        align-items: stretch; 
+        gap: var(--spacing-xs);
+    }
+    .header__nav-link {
+        justify-content: center; 
+    }
+
+    /* === CLASE PARA BODY CUANDO EL MENÚ ESTÁ ABIERTO (OPCIONAL) === */
+    body.nav-open {
+    overflow: hidden; /* Evita que el contenido de fondo haga scroll */
+    }
+
+}

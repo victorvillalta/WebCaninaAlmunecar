@@ -1,0 +1,847 @@
+:root {
+    /* 🎨 Colores web*/
+    --color-primary: #92C0E5;
+    --color-primaryDark: #1a73e8;
+    --color-secondary: #F9B333;
+    --color-secondaryDark: #F29206;
+    --color-accent: #59c075; /* este color para lo aceptado */
+    --color-danger: #c02a1c; /* errores */
+    --color-waitingObjet: #b9afd3;
+
+    /* 🖼️ Colores de fondo */
+    --bg-full_light: #ffffff;
+    --bg-lightSmoth: #E4DFF1;
+    --bg-full_dark: #000000;
+    --bg-darkSmoth: #111111; /* tambien se suelen usar 100, 200 , 300 segun lo oscuro. */
+    --bg-button: var(--color-primary); /* podemos reusar colores pero... determinarlos aqui para claridad en nomenclaturas es una buena practica */
+    --bg-button-hover: var(--color-primaryDark);
+    --bg-card: var(--bg-full_light);
+    --bg-footer: var(--bg-darkSmoth);
+    
+
+    /* 📝 Colores de texto */
+    --text-primary: #202124;
+    --text-secondary: #535960;
+    --text-inverse: #ffffff;
+    --text-link: var(--color-primaryDark);
+
+    /* 🔤 Tipografía */
+    --font-base: 'Inter', 'Segoe UI', sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 20px;
+    --line-height-base: 1.6;
+
+    /* 📦 Espaciado */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* 🎯 Bordes y radios */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    --border-color: #dadce0;
+    --border-separator: 1px solid var(--border-color);
+
+    /* 💨 Sombras */
+    --shadow-sm: 0 1px 2px 0px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px 0px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px 0px rgba(0, 0, 0, 0.15);
+
+    /* 🕓 Transiciones */
+    --transition-default: all 0.3s ease-in-out;
+}
+
+/*RESET*/
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+}
+
+body{
+    /*cuando se genera un root es mas comodo definir despues valores por defecto a partes importantes como el body creando
+    una instancia reforzada por nuestros estilos definidos igual que un FRAME WORK*/
+    font-family: var(--font-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+    background-color: var(--bg-lightSmoth);
+    /*propiedades determinadas de propiedades que son específicas del motor de renderizado*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex; /*de momento para que me las tire para abajo todas*/
+    flex-direction: column;
+    min-height: 100vh; /*toma el alto del display, evitamos que se salga algun contenido y se ve todo sin problemas*/ 
+}
+
+main {
+    flex-grow: 1; /*empuja el footer hacia abajo*/
+}
+
+input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /*evita espacio extra debajo de las img*/
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-link);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    color: var(--color-primaryDark);
+}
+
+.separator {
+    border: none;
+    border-top: var(--border-separator);
+    margin: var(--spacing-lg) auto; 
+    width: 80%; 
+}
+
+/*HEADER*/
+.header {
+    background-color: var(--bg-full_light);
+    padding: var(--spacing-sm) 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.header__top {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 0 var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    flex-wrap: wrap; /*solucion moviles... de momento*/
+}
+
+.header__logo img {
+    width: 100px; 
+    height: auto;
+}
+
+.header__title {
+    font-size: 1.8rem; 
+    color: var(--color-primaryDark);
+    margin-left: var(--spacing-md); 
+}
+
+/*estilos para la hamburguesa, algunos son tomados en el DOM como la mayoria.. (por tanto la importancia de las clases toma peso)*/
+.header__nav-toggle {
+    display: none; /* Oculto por defecto, se mostrará en móviles */
+    background: var(--color-waitingObjet);
+    border-radius: 50%;
+    border: none;
+    padding: var(--spacing-sm); /* Un poco de padding para facilitar el click */
+    cursor: pointer;
+    position:fixed; /*Para posicionarlo en la esquina del header*/
+    top: 20px; /* Ajusta este valor para alinearlo verticalmente con tu header__top */
+    right: var(--spacing-md); /* Espacio desde la derecha */
+    z-index: 1100; /* Muy alto para estar encima de todo, incluso del menú desplegado */
+    width: 60px;  /* Ajusta al tamaño deseado de tus iconos */
+    height: 60px; /* Ajusta al tamaño deseado de tus iconos */
+    border: #5122c9 solid 3px;
+}
+
+.header__nav-toggle-icon {
+    width: 100%; /* La imagen SVG ocupa todo el botón */
+    height: 100%;
+    object-fit: contain; /* Para que el SVG escale sin deformarse */
+    display: block; /* Para evitar espacios extra */
+}
+
+.header__nav-toggle-icon.is-hidden {
+    display: none; /* Oculta el icono que no está activo */
+}
+
+.header__nav {
+    background-color: var(--color-waitingObjet); /*este es el color del nav por si se quiere cambiar por colision con iconos */
+    padding: var(--spacing-sm) 0;
+    position:sticky; /*fixed seria para que nos siguiese y el sticky para que nos siguiese despues de bajar el scroll.. cual es el problema, de porque no baja..*/
+    top: 0;
+    z-index: 1000; /*esto es una mala praxis pero como tiene que estar por encima de todo y puede haber varios puntos de capas pues... */
+    width: 100%;
+    box-shadow: var(--shadow-md);
+}
+
+.header__nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap; /*para que se apinen que despues... problemas*/
+}
+
+.header__nav-item {
+    /*lo estoy usando con el DOM aunque este vacio*/
+}
+
+.header__nav-link {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    color: var(--text-inverse);
+    font-weight: bold;
+    transition: var(--transition-default);
+    background-color: transparent; 
+}
+
+.header__nav-link:hover,
+.header__nav-link:focus {
+    background-color: var(--bg-secondary-b30); 
+    color: var(--text-primary); 
+    box-shadow: var(--shadow-sm);
+}
+
+.header__nav-icon {
+    width: 48px; 
+    height: 48px;
+    margin-right: var(--spacing-xs);
+    filter: brightness(0) invert(1); 
+/*los filtros son muy utiles para cambiar una cosa sin necesidad de cambiarla en el diseno, no me gusta como lo he dejado pero esta apanado por el momento*/
+}
+
+.header__nav-link:hover .header__nav-icon,
+.header__nav-link:focus .header__nav-icon {
+     filter: none; 
+}
+
+
+/*carrusel principal*/
+.carousel-main {
+    margin-bottom: var(--spacing-xl);
+}
+.carousel-main__container {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%; /* con el auto llega hasta el final , pero... nose si es lo que quiero REVISALO*/
+    margin: 0 auto;
+    aspect-ratio: 16 / 6; /* las proporciones van en base a la medida, por eso el tema del auto.. me chirria */
+    background-color: #b9afd3; /* es una buena practica poner un color por si no aparece nuestro carrusel ademas de cuando esta cargando por linea*/
+}
+
+.carousel-main__slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-main__slide {
+    flex: 0 0 100%;
+    height: 100%;
+}
+
+.carousel-main__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.carousel-main__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-main__btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-main__btn--prev {
+    left: var(--spacing-md);
+}
+
+.carousel-main__btn--next {
+    right: var(--spacing-md);
+}
+
+/*servicios*/
+.services {
+    padding: var(--spacing-xl) var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.services__carousel {
+    position: relative;
+    padding: 0 var(--spacing-xl);
+}
+
+.services__carousel-window {
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.services__carousel-track {
+    display: flex;
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-md); 
+    transition: transform 0.5s ease-in-out;
+}
+
+.service-card {
+    flex: 0 0 calc(25% - var(--spacing-md) * 3 / 4);
+    min-width: 220px; 
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card__image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.service-card__info {
+    padding: var(--spacing-md);
+    flex-grow: 1; /*para que todas las cards tengan la misma altura*/
+}
+
+.service-card__info h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primaryDark);
+}
+
+.services__carousel-btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: var(--bg-button);
+    color: var(--text-inverse);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-default);
+    box-shadow: var(--shadow-sm);
+}
+.services__carousel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.services__carousel-btn:hover:not(:disabled) {
+    background-color: var(--bg-button-hover);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.services__carousel-btn--prev {
+    left: -10px; 
+}
+
+.services__carousel-btn--next {
+    right: -10px; 
+}
+
+
+/*Productos*/
+.products {
+    padding: var(--spacing-xl) var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.products__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.product-item {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.product-item__image-container {
+    position: relative; 
+}
+
+.product-item__image-container img {
+     width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.product-item__info-icon {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm); 
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-default);
+    z-index: 5; 
+}
+
+.product-item__info-icon:hover {
+     background-color: var(--color-secondary);
+     color: var(--text-primary);
+     transform: scale(1.1);
+}
+
+.product-item__info-popup {
+    position: absolute;
+    top: calc(var(--spacing-sm) + 28px); 
+    left: var(--spacing-sm);
+    background-color: var(--bg-darkSmoth);
+    color: var(--text-inverse);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-md);
+    font-size: var(--font-size-sm);
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 6;
+    max-width: calc(100% - var(--spacing-sm) * 2); /*esto es para que no se salga, redimensionat*/
+}
+
+.product-item__image-container:hover .product-item__info-popup,
+.product-item__info-icon:focus + .product-item__info-popup { 
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.product-item__description {
+    padding: var(--spacing-md);
+}
+
+.product-item__description h4 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.product-item.is-hidden {
+    display: none; 
+}
+
+.products__load-more {
+    display: block; 
+    margin: var(--spacing-lg) auto 0;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--bg-button);
+    color: var(--text-inverse);
+    border-radius: var(--border-radius-md);
+    font-weight: bold;
+    transition: var(--transition-default);
+}
+
+.products__load-more:hover {
+    background-color: var(--bg-button-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.products__load-more.is-hidden {
+    display: none; 
+}
+
+
+/*Mapa*/
+.location {
+    padding: var(--spacing-xl) var(--spacing-md);
+     max-width: 1200px; 
+     margin: 0 auto; 
+}
+
+.location__map {
+    width: 100%;
+    height: 400px;
+    background-color: #e0e0e0; /*color de fondo mientras carga*/
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+}
+
+/*Horarios*/
+.hours {
+    padding: var(--spacing-xl) var(--spacing-md);
+     max-width: 600px; 
+     margin: 0 auto; 
+     text-align: center;
+}
+
+.hours__toggle {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.hours__toggle-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    background-color: var(--bg-full_light);
+    color: var(--text-secondary);
+    transition: var(--transition-default);
+    font-weight: 500;
+}
+
+.hours__toggle-btn.is-active {
+    background-color: var(--color-primary);
+    color: var(--text-inverse);
+    border-color: var(--color-primary);
+    font-weight: bold;
+}
+
+.hours__toggle-btn:not(.is-active):hover {
+    background-color: #f0f0f0; 
+    border-color: #ccc;
+}
+
+.hours__display {
+    position: relative;
+    min-height: 100px; 
+    background-color: var(--bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.hours__schedule {
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--spacing-lg);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); 
+    transition: opacity 0.4s ease-in-out, visibility 0.4s step-end, transform 0.4s ease-in-out;
+}
+
+.hours__schedule.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative; 
+    transition: opacity 0.4s ease-in-out, visibility 0.4s step-start, transform 0.4s ease-in-out;
+}
+
+.hour-card {
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-base);
+}
+.hour-card strong{
+    color: var(--color-primaryDark);
+}
+
+/*footer*/
+.footer {
+    background-color: var(--color-primary); /*aqui tendria que poner el var del footer pero... no me va en condi de momento... asi que recuerda cambiarlo*/
+    color: var(--text-inverse);
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+    margin-top: var(--spacing-xl); 
+}
+
+.footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    flex-wrap: wrap; 
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer__links,
+.footer__social {
+    flex-basis: 45%; /*se utiliza dentro de un contenedor flexible*/
+    min-width: 200px;
+}
+
+.footer__title {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-secondary); 
+    border-bottom: 1px solid var(--color-secondary);
+    padding-bottom: var(--spacing-xs);
+    display: inline-block; 
+}
+
+.footer__list {
+   
+}
+
+.footer__list li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer__link {
+    color: var(--text-inverse);
+    transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+    color: var(--color-secondary);
+}
+
+.footer__list--social {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.footer__social-link img {
+    width: 28px; 
+    height: 28px;
+    filter: grayscale(100%) brightness(200%); /* como el filtro que use arriba, este los pone blancos (aunque sean de otro color claro) o deberia xD */
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.footer__social-link:hover img {
+    filter: none; /*como el hover pone el none el filtro indicado antes se disipara todo esto es muy util para efectos rapidos y resultones*/
+    transform: scale(1.1);
+}
+
+.footer__copy {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid #444; 
+    margin: 0 var(--spacing-md); 
+}
+
+/*Responsividad*/
+/*este media standarizado para tablet*/
+@media (max-width: 768px) {
+    .header__title {
+        font-size: 1.5rem;
+    }
+
+    /*mostrar el menu hamburguesa*/
+    .header__nav-toggle { /* relacionado con el js */
+        display: block;
+    }
+
+   
+    /* Comportamiento del NAV (el menú) en móviles */
+    .header__nav {
+        position: fixed; /* Fijo en la pantalla */
+        top: 0;
+        left: 0;
+        width: 80%; /* Ancho del menú desplegado (ajusta al gusto) */
+        max-width: 300px; /* Un máximo para que no sea demasiado ancho */
+        height: 100vh; /* Altura completa de la pantalla */
+        
+        background-color: var(--color-waitingObjet); /* El color que ya tenías para el nav */
+        /* Si quieres un efecto de superposición más claro: */
+        /* background-color: rgba(146, 192, 229, 0.95); */ /* Tu --color-primary con opacidad */
+        /* backdrop-filter: blur(5px); */ /* Efecto blur opcional si usas RGBA */
+
+        padding-top: calc(var(--spacing-xl) + var(--spacing-lg)); /* Espacio arriba para no solapar con el botón de cierre si estuviera dentro, o simplemente para estética */
+        
+        transform: translateX(-100%); /* Oculto fuera de la pantalla a la izquierda */
+        transition: transform 0.3s ease-in-out; /* Animación suave */
+        
+        z-index: 1050; /* Debajo del botón de toggle, pero encima del contenido */
+        
+        /* Anula el sticky que tenías para escritorio, ya que ahora es fixed */
+        box-shadow: var(--shadow-lg); /* Sombra más pronunciada para el panel */
+        overflow-y: auto; /* Permite scroll si el menú es muy largo */
+    }
+
+    .header__nav.is-active { /* Clase que se añade con JS */
+        transform: translateX(0); /* Muestra el menú */
+    }
+
+    /* Ajustes a la lista de navegación dentro del menú móvil */
+    .header__nav-list {
+        flex-direction: column; /* Los items se apilan verticalmente */
+        align-items: flex-start; /* Alineados a la izquierda */
+        gap: var(--spacing-sm); /* Espacio entre items */
+        padding: var(--spacing-md) var(--spacing-lg); /* Padding interno */
+        /* justify-content: flex-start; Ya no es necesario space-around o center */
+        width: 100%; /* Ocupa todo el ancho del nav desplegado */
+    }
+    
+    .header__nav-item {
+        width: 100%; /* Cada item ocupa el ancho */
+    }
+
+    .header__nav-link {
+        padding: var(--spacing-md); /* Más padding para mejor toque en móvil */
+        font-size: var(--font-size-base); /* Ligeramente más grande o igual */
+        width: 100%; /* Para que toda la fila sea clickeable */
+        /* Tus estilos de hover/focus y color de texto deberían seguir funcionando bien */
+    }
+
+    .header__nav-icon {
+        width: 32px; /* Puedes ajustar el tamaño de los iconos en el menú móvil */
+        height: 32px;
+        /* margin-right: var(--spacing-sm); Un poco más de espacio si es necesario */
+    }
+
+    .carousel-main__container {
+        aspect-ratio: 16 / 7; /*esto me lleva siendo jodidamente util toda la web y lo desconocia*/
+    }
+
+    .service-card {
+        flex: 0 0 calc(50% - var(--spacing-md) / 2);  /* esto practicamente funciona casi como la logica de js pero no tenia ni idea de que podia hacerse tiene que ver con los elementos flexibles que no los hemos usado tanto en clase */
+         min-width: 200px;
+    }
+
+    .services__carousel {
+        padding: 0 var(--spacing-lg); 
+    }
+     .services__carousel-btn--prev { left: 0; }
+     .services__carousel-btn--next { right: 0; }
+
+
+    .products__grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .footer__container {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+    .footer__links,
+    .footer__social {
+        flex-basis: 100%; 
+    }
+     .footer__title {
+        display: block;
+        border-bottom: none;
+    }
+    .footer__list--social {
+        justify-content: center; 
+    }
+
+}
+
+/*otro standar pero este para movil... igual en mas pequenos la lio*/
+@media (max-width: 480px) {
+
+    .header__top {
+        flex-direction: column; 
+        gap: var(--spacing-xs);
+        text-align: center;
+    }
+    .header__title {
+        margin-left: 0; 
+    }
+
+    .header__nav-list {
+        flex-direction: column;
+        align-items: stretch; 
+        gap: var(--spacing-xs);
+    }
+    .header__nav-link {
+        justify-content: center; 
+    }
+
+    /* === CLASE PARA BODY CUANDO EL MENÚ ESTÁ ABIERTO (OPCIONAL) === */
+    body.nav-open {
+    overflow: hidden; /* Evita que el contenido de fondo haga scroll */
+    }
+
+    .carousel-main__container {
+        aspect-ratio: 16 / 9; 
+    }
+     .carousel-main__btn {
+        font-size: 1.2rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .service-card {
+       
+        flex: 0 0 90%; 
+        margin: 0 auto; 
+         min-width: unset;
+    }
+     .services__carousel-track {
+         padding-left: 5%; 
+ 
+    }
+
+     .services__carousel {
+        padding: 0; 
+    }
+     .services__carousel-btn {
+         top: auto; 
+         bottom: -30px;
+         transform: translateY(0);
+         width: 35px;
+         height: 35px;
+         font-size: 1.2rem;
+    }
+     .services__carousel-btn--prev { left: calc(50% - 40px); } 
+     .services__carousel-btn--next { right: calc(50% - 40px); }
+
+
+    .products__grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+     .location__map {
+        height: 300px; 
+    }
+
+     .hours__toggle {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+     .hours__toggle-btn {
+        width: 100%;
+    }
+} 
