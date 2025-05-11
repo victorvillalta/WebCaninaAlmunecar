@@ -1,3 +1,15 @@
+GIT:
+Solo he podido seleccionar los archivos, no las arpetas, siento la organizacion , de todos modos aun como podras comprobar no esta completa. 
+
+Nota: El archivo claramente tiene mucho codigo desarrollado por la IA que aun me queda por investigar, (no busco mas nota por ese codigo, lo que busco es investigar) , con el tiempo , ire Leyendo el codigo , que un programador basicamente es lo que dedica
+todo el tiempo a leer codigo. Por otro lado creo que usar la IA siempre y cuando lo hagas con medida de uso , es decir reflexionando sobre lo que hagas y haciendo pequenos ejercicios que te vayan acercando a lo hecho aqui que evidentemente esta por encima 
+de mi capacitacion ahora esta bien . La carga de trabajo en las practicas, mas lo que tengo ahora con esto y otras cosas que tengo en mi vida , nno me dan tampoco para escribir tantas lineas de codigo y ... la estoy orientando para saber que tal va la
+Metodologia BEM , el uso de ciertas buenas praxis de SEO (a nivel programador no a  lo que se dedicaria ya alguien de marquetin mas capacitado). Asi que bueno, creo que un 5 tiene , lo demas a mi me da igual , lo que yo se y puedo aprender lo se yo. Y mi esfuerzo
+creeme que esta ahi , la IA tampoco tira bien el codigo gratis y eso lo sabemos todos y mas cuando se va complicando , de hecho, siento el que el formulario este desplazado a la izquierda pero... ya no podia mas. Saludos, 
+
+Solo estan habiles la web de : #Iontacto y la de #Inicio el resto , la verdad que algunas como #servicios o productos aparecen al inicio , me parece si no recuerdo mal que productos la tenia sin acabar al menos no llegue a ponerle las fotos pero bueno..  
+ahi queda. Full time , ocupado. 
+
 Cosas aprendidas en la web de aterrizaje 
 
 HTML
